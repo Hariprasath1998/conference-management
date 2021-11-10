@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -16,13 +17,26 @@ const UserSchema = new mongoose.Schema({
   },
   isAdmin: {
     type: Boolean,
-    default: False,
-    required: True,
+    default: false,
+    required: true,
   },
   date: {
     type: Date,
     default: Date.now,
   },
+  purchasedTickets: [
+    {
+      conferenceId: {
+        type: Schema.Types.ObjectId,
+        ref: 'conferences',
+        required: true,
+      },
+      count: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
 });
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('Users', UserSchema);

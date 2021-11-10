@@ -12,7 +12,7 @@ const ConferenceSchema = new Schema({
   description: {
     type: String,
   },
-  tags: {
+  technology: {
     type: String,
   },
   location: {
@@ -23,10 +23,7 @@ const ConferenceSchema = new Schema({
     type: Number,
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+  time: { type: Number, default: new Date().getTime() },
 });
 
-module.exports = mongoose.model('post', ConferenceSchema);
+module.exports = mongoose.model('conferences', ConferenceSchema);
